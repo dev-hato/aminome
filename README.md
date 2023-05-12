@@ -9,7 +9,7 @@
 
 ## 対象バージョン
 
-- Misskey v13.12.1
+- Misskey v13.12.2
 - Meilisearch v1.1.1
 
 ## 使い方
