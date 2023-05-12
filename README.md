@@ -5,7 +5,7 @@
 ## これは何
 
 - [[13.12.0 beta.5]Meilisearchで導入以前の過去のノートを検索できるようにマイグレーションしたい · Issue #10789 · misskey-dev/misskey](https://github.com/misskey-dev/misskey/issues/10789) を実現します。
-- 自分のサーバーの全ノートをMeilisearchへ登録します。
+- 自分のサーバーの全ノート(ローカル)をMeilisearchへ登録します。
 
 ## 対象バージョン
 
