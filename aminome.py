@@ -16,7 +16,8 @@ db = psycopg2.connect(
 
 # meilisearch config
 api_key = "APIKEY"
-url = "http://localhost:7700/indexes/notes/documents?primaryKey=id"
+index = ""
+url = f"http://localhost:7700/indexes/{index}---notes/documents?primaryKey=id"
 headers = {
     "Content-Type": "application/json",
     "Authorization": f"Bearer {api_key}"
@@ -46,7 +47,8 @@ while True:
             'userHost': note['userHost'],
             'channelId': note['channelId'],
             'cw': note['cw'],
-            'text': note['text']
+            'text': note['text'],
+            'tags': note['tags']
         })
     print(f'{ofs=} {lmt=} {len(notes)=}')
     ofs = ofs + lmt
