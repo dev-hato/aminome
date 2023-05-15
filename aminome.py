@@ -30,7 +30,7 @@ notes = []
 
 while True:
     with db.cursor() as cur:
-        cur.execute('SELECT "id", "createdAt", "userId", "userHost", "channelId", "cw", "text" FROM "note" \
+        cur.execute('SELECT "id", "createdAt", "userId", "userHost", "channelId", "cw", "text", "tags" FROM "note" \
                     WHERE ("note"."visibility" = \'public\' OR "note"."visibility" = \'home\') AND\
                     ("note"."text" IS NOT NULL) AND\
                     ( "note"."uri" IS NULL) \
