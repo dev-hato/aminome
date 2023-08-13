@@ -51,10 +51,9 @@ while True:
             'tags': note['tags']
         })
     print(f'{ofs=} {lmt=} {len(notes)=}')
+    response = requests.post(url, data=orjson.dumps(notes), headers=headers)
+    print(response.content)
+    notes = []
     ofs = ofs + lmt
 
 db.close()
-
-response = requests.post(url, data=orjson.dumps(notes), headers=headers)
-
-print(response.content)
