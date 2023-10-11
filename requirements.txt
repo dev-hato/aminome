@@ -4,4 +4,4 @@ idna==3.4
 orjson==3.8.12
 psycopg2-binary==2.9.6
 requests==2.31.0
-urllib3==2.0.2
+urllib3==2.0.6
