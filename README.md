@@ -9,8 +9,9 @@
 
 ## 対象バージョン
 
-- Misskey v13.12.2
-- Meilisearch v1.1.1
+- Misskey 2023.10.2 (aid)
+- Postgresql 15.4
+- meilisearch 1.4.2
 
 ## 使い方
 
