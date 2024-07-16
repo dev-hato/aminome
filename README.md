@@ -13,9 +13,10 @@
 
 ### 動作確認済み環境
 
-- Misskey 2023.12.2 (aid)
-- Postgresql 16.2
-- meilisearch 1.6.1
+- Misskey 2024.5.0 (aid)
+- Sharkey 2024.5.1 (aidx)
+- PostgreSQL 16.3
+- Meilisearch 1.9.0
 
 ## 使い方
 
