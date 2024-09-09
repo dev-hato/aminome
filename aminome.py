@@ -5,10 +5,12 @@ import psycopg2
 import psycopg2.extras
 import yaml
 
+__version__ = '0.2.0'
+
 def arg_parse():
     return argparse.ArgumentParser(
         prog="aminome",
-        usage="python aminome.py -c config/config.yml",
+        usage="python3 aminome.py -c config/config.yml",
         description="Add all misskey notes to Meilisearch.",
         add_help=True,
     )
@@ -41,7 +43,7 @@ def parse_aid(id):
     t = int(int(id[:8], 36) + TIME2000)
     return t
 
-def fetch_note_from_db(config, db, ofs=0, lmt=1000):
+def fetch_note_from_db(config, db, ofs, lmt):
     notes = []
 
     while True:
@@ -93,14 +95,25 @@ def main():
     parser.add_argument("-c", "--config", 
                         type=str, 
                         default='config/config.yml', 
-                        help="config file path")
+                        help="Set the path of the configuration file. Default is config/config.yml.")
+    parser.add_argument("--offset", 
+                        type=int, 
+                        default=0, 
+                        help="Set the offset value. Default is 0.")
+    parser.add_argument("--limit", 
+                        type=int, 
+                        default=1000, 
+                        help="Set how many notes to get in one query. Default is 1000.")
+    parser.add_argument('-v', '--version', action='version',
+                        version=__version__,
+                        help='Show version and exit')
     args = parser.parse_args()
 
     config = load_config(args.config)
 
     db = connect_db(config)
 
-    fetch_note_from_db(config, db)
+    fetch_note_from_db(config, db, args.offset, args.limit)
 
 if __name__ == "__main__":
     main()
