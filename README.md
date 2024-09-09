@@ -18,7 +18,11 @@
     pip3 install -r requirements.txt
     ```
 
-2. 設定ファイル `config/config.yml` を編集します。
+2. 設定ファイルをコピーして編集します。
+
+    ```sh
+    cp config/example.yml config/config.yml
+    ```
 
 3. 実行します。
 

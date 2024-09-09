@@ -30,7 +30,10 @@ def connect_db(config):
     )
 
 def send_note_to_meil(config, notes):
-    url = f"http://{config['meilisearch']['index']}:{config['meilisearch']['port']}/indexes/{config['meilisearch']['index']}---notes/documents?primaryKey=id"
+    if(config['meilisearch']['ssl'] == "true"):
+        url = f"https://{config['meilisearch']['index']}:{config['meilisearch']['port']}/indexes/{config['meilisearch']['index']}---notes/documents?primaryKey=id"
+    else:
+        url = f"http://{config['meilisearch']['index']}:{config['meilisearch']['port']}/indexes/{config['meilisearch']['index']}---notes/documents?primaryKey=id"
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {config['meilisearch']['apiKey']}"

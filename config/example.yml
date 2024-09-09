@@ -11,3 +11,4 @@ meilisearch:
   apiKey: 'your-api-key'
   index: 'your-index'
   scope: local
+  ssl: false
