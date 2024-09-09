@@ -1,8 +1,17 @@
-import yaml
-import psycopg2
-import psycopg2.extras
+import argparse
 import orjson
 import requests
+import psycopg2
+import psycopg2.extras
+import yaml
+
+def arg_parse():
+    return argparse.ArgumentParser(
+        prog="aminome",
+        usage="python aminome.py -c config/config.yml",
+        description="Add all misskey notes to Meilisearch.",
+        add_help=True,
+    )
 
 def load_config(config_path):
     with open(config_path, 'r') as yml:
@@ -80,7 +89,14 @@ def format_note(note):
             }
 
 def main():
-    config = load_config('config/config.yml')
+    parser = arg_parse()
+    parser.add_argument("-c", "--config", 
+                        type=str, 
+                        default='config/config.yml', 
+                        help="config file path")
+    args = parser.parse_args()
+
+    config = load_config(args.config)
 
     db = connect_db(config)
 
