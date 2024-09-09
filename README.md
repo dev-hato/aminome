@@ -29,6 +29,13 @@
     ```sh
     python3 ./aminome.py
     ```
+## 動作確認済み環境
+
+以下の環境で動作確認済みです。
+
+- Misskey 2024.8.0 (aid)
+- PostgreSQL 16.3
+- Meilisearch 1.9.0
 
 ## 参考実装
 
