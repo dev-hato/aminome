@@ -6,36 +6,50 @@
 
 - Misskeyサーバーの全ノートをMeilisearchへ登録するPythonスクリプトです。
 - [Meilisearchで導入以前の過去のノートを検索できるようにマイグレーションしたい](https://github.com/misskey-dev/misskey/issues/10789) を実現します。
-- ID採番方式がaidのMisskeyサーバーに対応しています。(もしかしたらaidxでも動くかもしれません。)
+- ID採番方式がaidまたはaidxのMisskeyサーバーに対応しています。
 
 ## 使い方
 
 1. python packageをインストールします。
 
     ```sh
-    python3 -m venv aminome
-    source aminome/bin/activate
+    python3 -m venv .aminome
+    source .aminome/bin/activate
     pip3 install -r requirements.txt
     ```
 
-2. 設定ファイルをコピーして編集します。
+2. 設定ファイルをコピーし、編集します。
 
     ```sh
     cp config/example.yml config/config.yml
     ```
 
-3. 実行します。
+    設定ファイルはMisskeyの `default.yml` を参考にすると良いでしょう。  
+    - Meilisearchの `apiKey` はMeilisearchのAPIキーを指定します。
+    - Meilisearchの `index` はデフォルトではMisskeyのドメイン(ドットをハイフンに置き換えた文字列)になります。
+
+    ```yaml
+    db:
+        host: localhost
+        port: 5432
+        db: misskey
+        user: example-misskey-user
+        pass: example-misskey-pass
+
+    meilisearch:
+        host: localhost
+        port: 7700
+        apiKey: 'your-api-key'
+        index: 'example-com'
+        scope: local
+        ssl: false
+    ```
+
+3. aminomeを実行します。
 
     ```sh
     python3 ./aminome.py
     ```
-## 動作確認済み環境
-
-以下の環境で動作確認済みです。
-
-- Misskey 2024.8.0 (aid)
-- PostgreSQL 16.3
-- Meilisearch 1.9.0
 
 ## 参考実装
 

@@ -5,7 +5,7 @@ import psycopg2
 import psycopg2.extras
 import yaml
 
-__version__ = '0.2.0'
+__version__ = '1.0.0'
 
 def arg_parse():
     return argparse.ArgumentParser(
