@@ -1,7 +1,8 @@
-certifi==2024.7.4
-charset-normalizer==3.1.0
-idna==3.7
-orjson==3.9.15
-psycopg2-binary==2.9.6
-requests==2.32.0
-urllib3==2.2.2
+certifi
+charset-normalizer
+idna
+orjson
+psycopg2-binary
+PyYAML
+requests
+urllib3
