@@ -31,9 +31,9 @@ def connect_db(config):
 
 def send_note_to_meil(config, notes):
     if(config['meilisearch']['ssl'] == "true"):
-        url = f"https://{config['meilisearch']['index']}:{config['meilisearch']['port']}/indexes/{config['meilisearch']['index']}---notes/documents?primaryKey=id"
+        url = f"https://{config['meilisearch']['host']}:{config['meilisearch']['port']}/indexes/{config['meilisearch']['index']}---notes/documents?primaryKey=id"
     else:
-        url = f"http://{config['meilisearch']['index']}:{config['meilisearch']['port']}/indexes/{config['meilisearch']['index']}---notes/documents?primaryKey=id"
+        url = f"http://{config['meilisearch']['host']}:{config['meilisearch']['port']}/indexes/{config['meilisearch']['index']}---notes/documents?primaryKey=id"
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {config['meilisearch']['apiKey']}"
@@ -52,14 +52,14 @@ def fetch_note_from_db(config, db, ofs, lmt):
     while True:
         with db.cursor() as cur:
             if(config['meilisearch']['scope'] == 'local'):
-                print("fetch local notes only")
+                print("fetch local notes.")
                 cur.execute('SELECT "id", "userId", "userHost", "channelId", "cw", "text", "tags" FROM "note" \
                             WHERE ("note"."visibility" = \'public\' OR "note"."visibility" = \'home\') AND\
                             ("note"."text" IS NOT NULL) AND\
                             ("note"."uri" IS NULL) \
                             LIMIT '  + str(lmt) + ' OFFSET ' + str(ofs))
             else:
-                print("fetch local and global notes")
+                print("fetch local and global notes.")
                 cur.execute('SELECT "id", "userId", "userHost", "channelId", "cw", "text", "tags" FROM "note" \
                             WHERE ("note"."visibility" = \'public\' OR "note"."visibility" = \'home\') AND\
                             ("note"."text" IS NOT NULL) AND\

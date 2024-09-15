@@ -8,7 +8,7 @@ db:
 meilisearch:
   host: localhost
   port: 7700
-  apiKey: 'your-api-key'
+  apiKey: '2CED2B80-9F92-48D8-88E2-47024E37136E'
   index: 'your-index'
   scope: local
   ssl: false

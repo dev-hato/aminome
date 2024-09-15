@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:15-alpine
+    env_file:
+      - .config/docker.env
+    volumes:
+      - ./postgres/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"
+      interval: 5s
+      retries: 20
+    ports:
+      - "5432:5432"
+  meilisearch:
+    image: getmeili/meilisearch:v1.3.4
+    environment:
+      - MEILI_NO_ANALYTICS=true
+    env_file:
+      - .config/meilisearch.env
+    ports:
+      - "7700:7700"
