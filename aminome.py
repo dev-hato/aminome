@@ -5,7 +5,7 @@ import psycopg2
 import psycopg2.extras
 import yaml
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 def arg_parse():
     return argparse.ArgumentParser(
@@ -62,7 +62,7 @@ def fetch_note_from_db(config, db, ofs, lmt):
                 print("fetch local and global notes.")
                 cur.execute('SELECT "id", "userId", "userHost", "channelId", "cw", "text", "tags" FROM "note" \
                             WHERE ("note"."visibility" = \'public\' OR "note"."visibility" = \'home\') AND\
-                            ("note"."text" IS NOT NULL) AND\
+                            ("note"."text" IS NOT NULL) \
                             LIMIT '  + str(lmt) + ' OFFSET ' + str(ofs))
            
             qnotes = cur.fetchall()
